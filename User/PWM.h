@@ -8,7 +8,13 @@ typedef enum
     PWM_CH_NUM,
 }PWM_Channel_t;
 
-static const PWM_Channel_t PWM_CHANNELS[PWM_CH_NUM]=
+typedef struct
+{
+    TIM_HandleTypeDef *htim;
+    uint32_t channel;
+} PWM_Config_t;
+
+static const PWM_Config_t PWM_CHANNELS[PWM_CH_NUM]=
 {[PWM_CH_LEFT] = {&htim1, TIM_CHANNEL_1}, 
  [PWM_CH_RIGHT] = {&htim1, TIM_CHANNEL_2},
 };
