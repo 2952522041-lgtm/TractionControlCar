@@ -21,21 +21,9 @@ typedef enum
 
 }tb6612_Channel_t;
 
-typedef struct
-{
-    GPIO_TypeDef *IN1_GPIO_Port;
-    uint16_t IN1_Pin;
-    GPIO_TypeDef *IN2_GPIO_Port;
-    uint16_t IN2_Pin;
-    uint32_t pwm_channel;
-    float speed;
-} tb6612_Config_t;
-
-static tb6612_Config_t tb6612s[tb6612_CH_NUM] = 
-{
-    [tb6612_CH_LEFT] = {AIN1_GPIO_Port, AIN1_Pin, AIN2_GPIO_Port, AIN2_Pin, PWM_CH_LEFT, 0.0f},
-    [tb6612_CH_RIGHT] = {BIN1_GPIO_Port, BIN1_Pin, BIN2_GPIO_Port, BIN2_Pin, PWM_CH_RIGHT, 0.0f}
-};
-
 void tb6612_Init(void);
+void tb6612_SetDuty(tb6612_Channel_t tb6612_Channel, uint32_t duty);
+void tb6612_SetDirection(tb6612_Channel_t tb6612_Channel, tb6612_Direction_t direction);
+void tb6612_Stop(tb6612_Channel_t tb6612_Channel);
+void tb6612_Brake(tb6612_Channel_t tb6612_Channel);
 void tb6612_SetRPM(tb6612_Channel_t tb6612_Channel, float rpm);

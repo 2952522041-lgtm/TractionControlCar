@@ -2,11 +2,21 @@
 #include "PWM.h"
 #include "tim.h"
 
-void tb6612_Init(void);
-void tb6612_SetDirection(tb6612_Channel_t tb6612_Channel, tb6612_Direction_t direction);
-void tb6612_Stop(void);
-void tb6612_Brake(void);
-void tb6612_SetRPM(float rpm);
+typedef struct
+{
+    GPIO_TypeDef *IN1_GPIO_Port;
+    uint16_t IN1_Pin;
+    GPIO_TypeDef *IN2_GPIO_Port;
+    uint16_t IN2_Pin;
+    PWM_Channel_t pwm_channel;
+    float speed;
+} tb6612_Config_t;
+
+static tb6612_Config_t tb6612s[tb6612_CH_NUM] =
+{
+    [tb6612_CH_LEFT] = {AIN1_GPIO_Port, AIN1_Pin, AIN2_GPIO_Port, AIN2_Pin, PWM_CH_LEFT, 0.0f},
+    [tb6612_CH_RIGHT] = {BIN1_GPIO_Port, BIN1_Pin, BIN2_GPIO_Port, BIN2_Pin, PWM_CH_RIGHT, 0.0f}
+};
 
 void tb6612_Init(void)
 {
@@ -18,6 +28,8 @@ void tb6612_Init(void)
 
 void tb6612_SetDuty(tb6612_Channel_t tb6612_Channel, uint32_t duty)
 {
+    PWM_Channel_t channel;
+
     if (duty > tb6612_PWM_MAX_DUTY)
     {
        duty = tb6612_PWM_MAX_DUTY;
@@ -25,7 +37,7 @@ void tb6612_SetDuty(tb6612_Channel_t tb6612_Channel, uint32_t duty)
 
     channel = tb6612s[tb6612_Channel].pwm_channel;
 
-    Set_PWM_Duty(PWM_Channel_t channel, duty)
+    Set_PWM_Duty(channel, (uint16_t)duty);
 }
 
 void tb6612_SetDirection(tb6612_Channel_t tb6612_Channel, tb6612_Direction_t direction)
@@ -70,7 +82,7 @@ void tb6612_Brake(tb6612_Channel_t tb6612_Channel)
     tb6612_SetDirection(tb6612_Channel, tb6612_DIR_BRAKE);
 }
 
-float abs(float number)
+static float tb6612_abs(float number)
 {
     if (number < 0)
     {
@@ -100,7 +112,7 @@ void tb6612_SetRPM(tb6612_Channel_t tb6612_Channel, float rpm)
     {
         motor_rpm = -tb6612_max_rpm;
     }
-    duty = (uint32_t)(abs(motor_rpm) / tb6612_max_rpm) * (float)tb6612_PWM_MAX_DUTY;
+    duty = (uint32_t)((tb6612_abs(motor_rpm) / tb6612_max_rpm) * (float)tb6612_PWM_MAX_DUTY);
 
     if (motor_rpm > 0.0f)
     {
