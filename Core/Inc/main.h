@@ -61,10 +61,10 @@ void Error_Handler(void);
 #define BIN1_GPIO_Port GPIOA
 #define BIN2_Pin GPIO_PIN_7
 #define BIN2_GPIO_Port GPIOA
+#define AIN2_Pin GPIO_PIN_0
+#define AIN2_GPIO_Port GPIOB
 #define AIN1_Pin GPIO_PIN_1
 #define AIN1_GPIO_Port GPIOB
-#define AIN2_Pin GPIO_PIN_2
-#define AIN2_GPIO_Port GPIOB
 #define PWM_OUT1_Pin GPIO_PIN_8
 #define PWM_OUT1_GPIO_Port GPIOA
 #define PWM_OUT2_Pin GPIO_PIN_9
