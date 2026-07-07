@@ -24,6 +24,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "Motor.h"
+#include "Car.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -89,7 +90,7 @@ int main(void)
   MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
   Motor_Init();
-  Motor_SetBothSpeedPercent(50.0f, 50.0f);
+  Motor_SetBothSpeedPercent(50.0f, 10.0f);
 
   /* USER CODE END 2 */
 
