@@ -56,12 +56,12 @@ void tb6612_SetDirection(tb6612_Channel_t tb6612_Channel, tb6612_Direction_t dir
     {
         
         case tb6612_DIR_FORWARD:
-            HAL_GPIO_WritePin(IN1_GPIO_Port, IN1_Pin, GPIO_PIN_SET);
-            HAL_GPIO_WritePin(IN2_GPIO_Port, IN2_Pin, GPIO_PIN_RESET);
-            break;
-        case tb6612_DIR_BACKWARD:
             HAL_GPIO_WritePin(IN1_GPIO_Port, IN1_Pin, GPIO_PIN_RESET);
             HAL_GPIO_WritePin(IN2_GPIO_Port, IN2_Pin, GPIO_PIN_SET);
+            break;
+        case tb6612_DIR_BACKWARD:
+            HAL_GPIO_WritePin(IN1_GPIO_Port, IN1_Pin, GPIO_PIN_SET);
+            HAL_GPIO_WritePin(IN2_GPIO_Port, IN2_Pin, GPIO_PIN_RESET);
             break;
         case tb6612_DIR_BRAKE:
             HAL_GPIO_WritePin(IN1_GPIO_Port, IN1_Pin, GPIO_PIN_SET);
