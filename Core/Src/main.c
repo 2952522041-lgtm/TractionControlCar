@@ -88,9 +88,11 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_TIM1_Init();
+  MX_TIM2_Init();
+  MX_TIM4_Init();
   /* USER CODE BEGIN 2 */
-  Motor_Init();
-  Motor_SetBothSpeedPercent(50.0f, 10.0f);
+  Car_Init();
+  Car_Drive(30.0f, 28.0f);
 
   /* USER CODE END 2 */
 
