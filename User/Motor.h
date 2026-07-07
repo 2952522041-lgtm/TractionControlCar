@@ -9,6 +9,9 @@ typedef enum
 
 void Motor_Init(void);
 
+void Motor_SetRPM(Motor_ID_t motor, float rpm);
+void Motor_SetBothRPM(float left_rpm, float right_rpm);
+
 void Motor_SetSpeedPercent(Motor_ID_t motor, float percent);
 void Motor_SetBothSpeedPercent(float left_percent, float right_percent);
 
