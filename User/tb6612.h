@@ -3,7 +3,7 @@
 
 #define tb6612_PWM_MAX_DUTY 3599u
 #define tb6612_rpm_direction 1.0f
-#define tb6612_max_rpm 100.0f
+#define tb6612_max_rpm 330.0f
 
 typedef enum
 {
