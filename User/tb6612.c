@@ -35,6 +35,11 @@ void tb6612_Init(void)
 
 void tb6612_SetDuty(tb6612_Channel_t tb6612_Channel, uint32_t duty)
 {
+    if (tb6612_Channel >= tb6612_CH_NUM)
+    {
+        return;
+    }
+
     if (duty > tb6612_PWM_MAX_DUTY)
     {
        duty = tb6612_PWM_MAX_DUTY;
@@ -47,6 +52,11 @@ void tb6612_SetDuty(tb6612_Channel_t tb6612_Channel, uint32_t duty)
 
 void tb6612_SetDirection(tb6612_Channel_t tb6612_Channel, tb6612_Direction_t direction)
 {
+    if (tb6612_Channel >= tb6612_CH_NUM)
+    {
+        return;
+    }
+
     GPIO_TypeDef *IN1_GPIO_Port = tb6612s[tb6612_Channel].IN1_GPIO_Port;
     uint16_t IN1_Pin = tb6612s[tb6612_Channel].IN1_Pin;
     GPIO_TypeDef *IN2_GPIO_Port = tb6612s[tb6612_Channel].IN2_GPIO_Port;
@@ -101,6 +111,11 @@ static float tb6612_abs(float number)
 
 void tb6612_SetRPM(tb6612_Channel_t tb6612_Channel, float rpm)
 {
+    if (tb6612_Channel >= tb6612_CH_NUM)
+    {
+        return;
+    }
+
     float motor_rpm = rpm * tb6612_rpm_direction;
     uint32_t duty = 0;
 

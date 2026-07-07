@@ -1,4 +1,4 @@
-#include "motor.h"
+#include "Motor.h"
 #include "tb6612.h"
 
 static const tb6612_Channel_t motor_map[MOTOR_NUM] =
@@ -26,6 +26,22 @@ void Motor_Init(void)
 {
     tb6612_Init();
     Motor_StopAll();
+}
+
+void Motor_SetRPM(Motor_ID_t motor, float rpm)
+{
+    if (motor >= MOTOR_NUM)
+    {
+        return;
+    }
+
+    tb6612_SetRPM(motor_map[motor], rpm);
+}
+
+void Motor_SetBothRPM(float left_rpm, float right_rpm)
+{
+    Motor_SetRPM(MOTOR_LEFT, left_rpm);
+    Motor_SetRPM(MOTOR_RIGHT, right_rpm);
 }
 
 void Motor_SetSpeedPercent(Motor_ID_t motor, float percent)
