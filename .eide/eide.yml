@@ -8,6 +8,7 @@ srcDirs:
   - Drivers
   - User
   - Lib
+  - Middlewares
 virtualFolder:
   name: <virtual_root>
   files:
@@ -32,6 +33,8 @@ targets:
         - Drivers/STM32F1xx_HAL_Driver/Inc/Legacy
         - Lib/CMSIS-DSP-1.17.0/Include
         - Middlewares/Third_Party/FreeRTOS/Source/include
+        - Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3
+        - Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2
       libList: []
     excludeList: []
     settings:
