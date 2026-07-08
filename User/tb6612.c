@@ -144,5 +144,4 @@ void tb6612_SetRPM(tb6612_Channel_t tb6612_Channel, float rpm)
     }
 
     tb6612_SetDuty(tb6612_Channel, duty);
-
 }
