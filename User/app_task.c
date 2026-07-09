@@ -2,6 +2,7 @@
 #include "encode.h"
 #include "PWM.h"
 #include "Motor.h"
+#include "tb6612.h"
 
 #include "FreeRTOS.h"
 #include "queue.h"
@@ -42,10 +43,6 @@ typedef struct
     float right_measured_rpm;
 }speed_sample_t;
 
-typedef struct
-{
-
-}
 void APP_FREERTOS_Init(void)
 {
     speed_tick_sem = xSemaphoreCreateBinary(); //create a semaphore for speed tick
@@ -88,9 +85,9 @@ void App_Timer100HZISR(void)
 
 }
 
-static void APP_TIM3PeriodElapsedCallback(TIM_HandleTypeDef *hitm)
+static void APP_TIM3PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-    if (hitm->Instance == TIM3)
+    if (htim->Instance == TIM3)
     {
         App_Timer100HZISR();
     }
