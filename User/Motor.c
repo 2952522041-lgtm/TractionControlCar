@@ -1,6 +1,13 @@
 #include "Motor.h"
 #include "tb6612.h"
 
+static float target_rpms[MOTOR_NUM]=
+{
+    [MOTOR_LEFT] = 0.0f,
+    [MOTOR_RIGHT] = 0.0f,
+};
+
+
 static const tb6612_Channel_t motor_map[MOTOR_NUM] =
 {
     [MOTOR_LEFT] = tb6612_CH_LEFT,
@@ -26,6 +33,41 @@ void Motor_Init(void)
 {
     tb6612_Init();
     Motor_StopAll();
+}
+
+void Motor_SetTargetRPM(Motor_ID_t motor, float rpm)
+{
+    if (motor >= MOTOR_NUM)
+    {
+        return;
+    }
+
+    if (rpm > tb6612_max_rpm)
+    {
+        rpm = tb6612_max_rpm;
+    }
+    if (rpm < -tb6612_max_rpm)
+    {
+        rpm = -tb6612_max_rpm;
+    }
+    target_rpms[motor] = rpm;
+
+    if (rpm == 0.0f)
+    {
+        Motor_Stop(motor);
+    }
+
+}
+
+void Motor_SetBothTargetRPM(float left_rpm, float right_rpm)
+{
+    Motor_SetTargetRPM(MOTOR_LEFT, left_rpm);
+    Motor_SetTargetRPM(MOTOR_RIGHT, right_rpm);
+}
+
+float Motor_GetTargetRPM(Motor_ID_t motor)
+{
+   return target_rpms[motor];
 }
 
 void Motor_SetRPM(Motor_ID_t motor, float rpm)
