@@ -2,6 +2,8 @@
 #include "main.h"
 #include "tim.h"
 
+#define PWM_MAX_DUTY 3599u
+
 typedef enum
 {
     PWM_CH_LEFT = 0,
