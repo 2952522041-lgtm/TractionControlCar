@@ -48,6 +48,8 @@ User/tb6612.c \
 User/encode.c \
 User/8channel_linefollowing.c \
 User/app_task.c \
+Lib/CMSIS-DSP-1.17.0/Source/arm_pid_init_f32.c \
+Lib/CMSIS-DSP-1.17.0/Source/arm_pid_reset_f32.c \
 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c \
 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c \
 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c \
@@ -143,6 +145,7 @@ C_INCLUDES =  \
 -IDrivers/STM32F1xx_HAL_Driver/Inc/Legacy \
 -IDrivers/CMSIS/Device/ST/STM32F1xx/Include \
 -IDrivers/CMSIS/Include \
+-ILib/CMSIS-DSP-1.17.0/Include \
 -IMiddlewares/Third_Party/FreeRTOS/Source/include \
 -IMiddlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 \
 -IMiddlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3

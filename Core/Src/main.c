@@ -25,8 +25,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "Car.h"
-#include "encode.h"
+#include "app_task.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -96,9 +95,7 @@ int main(void)
   MX_TIM3_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-  Encoder_Init();
-  Car_Init();
-  Car_Drive(30.0f, 28.0f);
+  User_Init();
 
   /* USER CODE END 2 */
 
