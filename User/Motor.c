@@ -35,6 +35,7 @@ void Motor_Init(void)
     Motor_StopAll();
 }
 
+//设置目标rpm（未实行）
 void Motor_SetTargetRPM(Motor_ID_t motor, float rpm)
 {
     if (motor >= MOTOR_NUM)
@@ -59,6 +60,7 @@ void Motor_SetTargetRPM(Motor_ID_t motor, float rpm)
 
 }
 
+//设置目标rpm（未实行）
 void Motor_SetBothTargetRPM(float left_rpm, float right_rpm)
 {
     Motor_SetTargetRPM(MOTOR_LEFT, left_rpm);
@@ -70,6 +72,7 @@ float Motor_GetTargetRPM(Motor_ID_t motor)
    return target_rpms[motor];
 }
 
+//实行转速
 void Motor_SetRPM(Motor_ID_t motor, float rpm)
 {
     if (motor >= MOTOR_NUM)

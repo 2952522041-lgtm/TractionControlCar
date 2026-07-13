@@ -19,12 +19,6 @@ static tb6612_Config_t tb6612s[tb6612_CH_NUM] =
     [tb6612_CH_RIGHT] = {BIN1_GPIO_Port, BIN1_Pin, BIN2_GPIO_Port, BIN2_Pin, PWM_CH_RIGHT, 0.0f}
 };
 
-void tb6612_Init(void);
-void tb6612_SetDirection(tb6612_Channel_t tb6612_Channel, tb6612_Direction_t direction);
-void tb6612_Stop(tb6612_Channel_t tb6612_Channel);
-void tb6612_Brake(tb6612_Channel_t tb6612_Channel);
-void tb6612_SetRPM(tb6612_Channel_t tb6612_Channel, float rpm);
-
 void tb6612_Init(void)
 {
     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
@@ -33,6 +27,7 @@ void tb6612_Init(void)
     tb6612_Stop(tb6612_CH_RIGHT);
 }
 
+//设置duty
 void tb6612_SetDuty(tb6612_Channel_t tb6612_Channel, uint32_t duty)
 {
     if (tb6612_Channel >= tb6612_CH_NUM)
@@ -50,6 +45,7 @@ void tb6612_SetDuty(tb6612_Channel_t tb6612_Channel, uint32_t duty)
     Set_PWM_Duty(channel, duty);
 }
 
+//控制电机状态
 void tb6612_SetDirection(tb6612_Channel_t tb6612_Channel, tb6612_Direction_t direction)
 {
     if (tb6612_Channel >= tb6612_CH_NUM)

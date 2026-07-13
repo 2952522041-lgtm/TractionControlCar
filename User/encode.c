@@ -64,7 +64,7 @@ void Encoder_Update(float dt_sec)
     for (int i = 0; i < ENCODER_NUM; i++)
     {
         int32_t now = __HAL_TIM_GET_COUNTER(encoders[i].htim);
-        int16_t diff = (int16_t)(now - encoders[i].last_count);
+        int16_t diff = (int16_t)((uint16_t)now - (uint16_t)encoders[i].last_count);
 
         encoders[i].last_count = now;
 
